@@ -19,7 +19,9 @@ const { tag } = Astro.params;
 const { experiences } = Astro.props;
 ---
 <BaseLayout pageTitle={tag}>
-  <p>experiences tagged with {tag}</p>
+    <a href="/">home</a>
+
+  <h1>Experiences tagged with {tag}</h1>
   <ul>
     {experiences.map((experience => <ExperiencePost experience={experience} />))}
   </ul>
