@@ -1,12 +1,12 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Spellcasters Alley'
-pubDate: 2024-01-25
+pubDate: '2024-01-25'
 description: 'Video game demo - A turn based RPG with a Twist'
 image:
     url: '/assets/spellcaster.png'
     alt: 'Image of the spellcasteralley project.'
-tags: ["personal", "game_development", "unity", "blender", "animation", "experience"]
+tags: ["personal", "game_development", "unity", "blender", "animation", "development", "experience"]
 ---
 SpellCaster's Alley is a twist on the typical turn-based RPG where between each move used, the player is able to bowl to determine the final points of damage. The idea incorporates player skill expression into turn-based combat to see if it would add to the traditional turn-based RPG experience.
 

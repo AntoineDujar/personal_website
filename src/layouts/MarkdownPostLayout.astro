@@ -1,18 +1,80 @@
 ---
-import BaseLayout from './BaseLayout.astro'
+import { Image } from "astro:assets";
+import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 const tags = frontmatter.tags;
+
+const imagePath = "/src" + frontmatter.image.url;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
+);
+if (!images[imagePath])
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif}"`
+  );
 ---
+
 <BaseLayout pageTitle={frontmatter.title}>
-    <a href="/">home</a>
-    <h1>Experience</h1>
-    <h2>{frontmatter.title}</h2>
-    <div class="tags">
-        {tags.map((tag) => (
-          <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
-        ))}
+  <section>
+      <div class="title">
+        <a href="/"><h2 class="home">&lt;</h2></a>
+        <h2>Experience</h2>
+    </div>
+    <div class="article">
+      <div class="experience-contents">
+        <div class="icon-name">
+          <div class="icon">
+            <img src="/favicon.ico" alt="Favicon" />
+          </div>
+          <h2>{frontmatter.title}</h2>
+        </div>
+        <p>{frontmatter.description}</p>
+        <ul class="tags">
+          {
+            tags.map((tag) => (
+              <li class="tag">
+                <a href={"/tags/" + tag}>#{tag}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <Image
+          src={images[imagePath]()}
+          alt={frontmatter.image.alt}
+          width="700"
+        />
+        <p>{frontmatter.pubDate}</p>
       </div>
-    <p>{frontmatter.date}</p>
-    <p>{frontmatter.description}</p>
-    <slot />
+      <slot />
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  p {
+    margin-top: 0.5rem;
+  }
+  .icon-name {
+    display: flex;
+  }
+
+  .icon-name img {
+    margin-top: 0rem;
+  }
+
+  .icon {
+    margin: 0rem 0.5rem 0rem 0rem;
+  }
+
+  .article {
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .experience-contents {
+    margin: 0rem 0rem 1rem 0rem;
+    display: block;
+  }
+</style>

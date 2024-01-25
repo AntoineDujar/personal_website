@@ -1,41 +1,97 @@
-@import url('./reset.css');
+@import url("./reset.css");
 
 :root {
-    --background: #111111;
-    --on-background: #fefefe;
-    --nav-link: #02a2e6;
-    --nav-link-hover: #aeb2da;
-    --border: #5f5f5f;
-}  
+  --background: #111111;
+  --on-background: #fefefe;
+  --nav-link: #02a2e6;
+  --nav-link-hover: #aeb2da;
+  --border: #5f5f5f;
+}
 
 body {
-    background-color: var(--background);
-    color: var(--on-background);
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+  background-color: var(--background);
+  color: var(--on-background);
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
 header {
-    padding-top: 1rem;
-    font-size: 2rem;
-    text-align: center;
+  padding-top: 1rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+section {
+  max-width: 35rem;
 }
 
 h1 {
-    font-size:2rem;
+  font-size: 2rem;
 }
 h2 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 a {
-    color: var(--on-background);
-    text-decoration: none;
-    font-size: 1rem;
+  color: var(--on-background);
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 ul {
-    color: var(--nav-link);
+  color: var(--nav-link);
+}
+
+li {
+  color: var(--on-background);
+}
+
+.title {
+  padding: 1rem 0rem;
+  text-align:left;
+  border-bottom: 0.05rem solid var(--border);
+  display: flex;
+}
+
+.home {
+ margin-left: 1.5rem;
+ margin-right: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags a {
+  color: var(--nav-link);
+}
+
+.tag {
+  padding-right: 0.5rem;
+}
+
+.experience-contents {
+  margin: 0rem 0rem 1rem 0rem;
+  display: block;
+}
+
+.experience-contents img {
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  height: auto;
+}
+
+.experience {
+  margin-top: 1rem;
+  margin-right: 1.5rem;
+  border-bottom: 0.05rem solid var(--border);
+  display: flex;
+}
+
+.icon img {
+  border-radius: 10rem;
+  width: 2.5rem;
 }

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Sinowell Products'
-pubDate: 2024-01-25
+pubDate: '2024-01-25'
 description: 'Built a website for Sinowell Products'
 image:
     url: '/assets/sinowell.png'

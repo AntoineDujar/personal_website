@@ -11,16 +11,17 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
 <li class="experience">
     <div class="icon">
         <a href={experience.url}>
-            <img src="favicon.ico" alt="Favicon">
+            <img src="/favicon.ico" alt="Favicon">
         </a>
     </div>
 
     <div class="experience-contents">
         <a href={experience.url} >
             <h2>{exp.title}</h2>
+            <p>{exp.description}</p>
         </a>
         <ul class="tags">
-            {exp.tags.slice(0, 2).map((tag) => <li class="tag">
+            {exp.tags.slice(0, 3).map((tag) => <li class="tag">
                 <a href={'/tags/'+tag}>
                     #{tag}
                 </a>
@@ -33,43 +34,12 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
 </li>
 
 <style>
-    .icon {
-        margin: 0rem 0.5rem 0rem 1.5rem 
-    }
+.icon {
+    margin: 0rem 0.5rem 0rem 1.5rem 
+}
 
-    .icon img {
-        border-radius: 10rem;
-        width: 2.5rem;
-    }
-
-    .experience-contents {
-        margin: 0rem 1rem 1rem 0rem;
-        display: block;
-    }
-
-    .experience-contents img {
-        width: 100%;
-        border-radius: 1rem;
-        margin-top: 1rem;
-        height: auto;
-    }
-    
-    .experience {
-        margin-top: 1rem;
-        border-bottom: 0.05rem solid var(--border);
-        display: flex;
-    }
-
-    .tags{
-        display: flex;
-    }
-
-    .tags a {
-        color: var(--nav-link);
-    }
-
-    .tag {
-        padding-right: 0.5rem;
-    }
-
+p {
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+}
 </style>

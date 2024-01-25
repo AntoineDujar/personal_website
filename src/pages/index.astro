@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ExperiencePost from '../components/ExperiencePost.astro';
 import Navigation from '../components/Navigation.astro';
+
 const allExperiences = await Astro.glob('../pages/experiences/*.md');
 const pageTitle = "Antoine Dujardin"
 // <Navigation />
@@ -12,7 +13,7 @@ const pageTitle = "Antoine Dujardin"
 
 <BaseLayout pageTitle={pageTitle}>
   <section>
-    <div class="title">
+    <div class="index-title">
       <h1>Featured experiences</h1>
     </div>
     <ul>
@@ -23,14 +24,10 @@ const pageTitle = "Antoine Dujardin"
 </BaseLayout>
 
 <style>
-  .title {
+  .index-title {
     padding: 1rem 0rem;
-    text-align: center;
+    text-align:center;
     display: block;
     border-bottom: 0.05rem solid var(--border);
-  }
-
-  section {
-    max-width: 35rem;
   }
 </style>
