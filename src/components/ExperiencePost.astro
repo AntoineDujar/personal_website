@@ -1,0 +1,8 @@
+---
+const { experience } = Astro.props;
+---
+<li>
+    <a href={experience.url}>
+      {experience.frontmatter.title}
+    </a>
+</li>

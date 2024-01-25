@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExperiencePost from '../../components/ExperiencePost.astro';
+
+export async function getStaticPaths() {
+    const allExperiences = await Astro.glob('../experiences/*.md');
+    const uniqueTags = [...new Set(allExperiences.map((experience) => experience.frontmatter.tags).flat())];
+
+    return uniqueTags.map((tag) => {
+    const filteredPosts = allExperiences.filter((experience) => experience.frontmatter.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { experiences: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { experiences } = Astro.props;
+---
+<BaseLayout pageTitle={tag}>
+  <p>experiences tagged with {tag}</p>
+  <ul>
+    {experiences.map((experience => <ExperiencePost experience={experience} />))}
+  </ul>
+</BaseLayout>
