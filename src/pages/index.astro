@@ -3,21 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ExperiencePost from '../components/ExperiencePost.astro';
 import Navigation from '../components/Navigation.astro';
 
-const allExperiences = await Astro.glob('../pages/experiences/*.md');
+const allExperiences = await Astro.glob('../pages/experiences/*.{md,mdx}');
 const pageTitle = "Antoine Dujardin"
 // <Navigation />
-// <header>
-//   <h1>Antoine Dujardin</h1>
-// </header>
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+  
   <section>
+    <div class="index-title">
+      <h1>Antoine Dujardin</h1>
+    </div>
+  </section>
+  <section>
+    
     <div class="index-title">
       <h1>Featured experiences</h1>
     </div>
     <ul>
-      {allExperiences.map((experience) => <ExperiencePost experience={experience} />)}
       {allExperiences.map((experience) => <ExperiencePost experience={experience} />)}
     </ul>
   </section>

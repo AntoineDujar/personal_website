@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="back"><Icon name="material-symbols:arrow-left-alt-rounded"/></div>
+<div class="home"><a href="/"><Icon name="material-symbols:home-outline-rounded"/></a></div>
+<script is:inline>
+  document.querySelector(".back").addEventListener("click", () => {
+    console.log("backbutton")
+    history.back();
+  });
+</script>
+
+<style is:inline>
+  .back {
+    margin-left: 1.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: var(--on-background);
+    align-self: center;
+  }
+
+  .back:hover {
+    color: var(--nav-link);
+  }
+
+  .home a {
+    color: var(--on-background);
+  }
+
+  .home a:hover {
+    color: var(--nav-link);
+
+  }
+
+  .home {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: var(--on-background);
+    align-self: center;
+  }
+  
+  svg {
+    font-size: 2.25rem;
+  }
+</style>

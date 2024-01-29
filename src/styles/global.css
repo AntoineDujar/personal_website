@@ -1,9 +1,9 @@
 @import url("./reset.css");
 
 :root {
-  --background: #111111;
-  --on-background: #fefefe;
-  --nav-link: #02a2e6;
+  --background: #313131;
+  --on-background: #ede4e4;
+  --nav-link: #e36d35;
   --nav-link-hover: #aeb2da;
   --border: #5f5f5f;
 }
@@ -13,17 +13,21 @@ body {
   color: var(--on-background);
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
-  padding-top: 1rem;
-  font-size: 2rem;
-  text-align: center;
+  margin-top: 0rem;
+}
+
+footer {
+  margin-bottom: 3rem;
 }
 
 section {
   max-width: 35rem;
+  width: 100%;
 }
 
 h1 {
@@ -33,8 +37,13 @@ h2 {
   font-size: 1.5rem;
 }
 
+p {
+  margin-top: 0.5rem;
+  line-height: 1.25;
+}
+
 a {
-  color: var(--on-background);
+  color: var(--nav-link);
   text-decoration: none;
   font-size: 1rem;
 }
@@ -52,20 +61,12 @@ li {
   text-align:left;
   border-bottom: 0.05rem solid var(--border);
   display: flex;
-}
-
-.home {
- margin-left: 1.5rem;
- margin-right: 1rem;
+  align-items: center;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-}
-
-.tags a {
-  color: var(--nav-link);
 }
 
 .tag {
@@ -84,6 +85,13 @@ li {
   height: auto;
 }
 
+.experience-contents iframe {
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  height: 18rem;
+}
+
 .experience {
   margin-top: 1rem;
   margin-right: 1.5rem;
@@ -95,3 +103,4 @@ li {
   border-radius: 10rem;
   width: 2.5rem;
 }
+

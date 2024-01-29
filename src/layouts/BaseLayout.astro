@@ -4,17 +4,21 @@ const { pageTitle} = Astro.props;
 import { ViewTransitions } from 'astro:transitions';
 ---
 
-<html lang="en" transition:animate="slide">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <ViewTransitions />
   </head>
-
+<header>
+  
+</header>
   <body>
     <slot />
   </body>
+  <footer>
+
+  </footer>
 </html>

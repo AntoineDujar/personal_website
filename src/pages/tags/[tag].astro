@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ExperiencePost from '../../components/ExperiencePost.astro';
+import BackButton from "../../components/BackButton.astro"
+
 
 export async function getStaticPaths() {
-    const allExperiences = await Astro.glob('../experiences/*.md');
+    const allExperiences = await Astro.glob('../experiences/*.{md,mdx}');
     const uniqueTags = [...new Set(allExperiences.map((experience) => experience.frontmatter.tags).flat())];
 
     return uniqueTags.map((tag) => {
@@ -21,7 +23,7 @@ const { experiences } = Astro.props;
 <BaseLayout pageTitle={tag}>
   <section>
     <div class="title">
-      <a href="/"><h2 class="home">&lt;</h2></a>
+      <BackButton />
       <h2>Experiences tagged with {tag}</h2>
     </div>
     <ul>

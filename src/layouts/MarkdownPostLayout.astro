@@ -1,24 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
+import ImageImport from "../components/ImageImport.astro"
+import BackButton from "../components/BackButton.astro"
 const { frontmatter } = Astro.props;
 const tags = frontmatter.tags;
 
-const imagePath = "/src" + frontmatter.image.url;
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/**/*.{jpeg,jpg,png,gif}"
-);
-if (!images[imagePath])
-  throw new Error(
-    `"${imagePath}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif}"`
-  );
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
   <section>
       <div class="title">
-        <a href="/"><h2 class="home">&lt;</h2></a>
+        <BackButton />
         <h2>Experience</h2>
     </div>
     <div class="article">
@@ -39,22 +32,22 @@ if (!images[imagePath])
             ))
           }
         </ul>
-        <Image
-          src={images[imagePath]()}
-          alt={frontmatter.image.alt}
-          width="700"
-        />
-        <p>{frontmatter.pubDate}</p>
+        <ImageImport url={frontmatter.image.url} alt={frontmatter.image.alt} />
+        <p class="date">{frontmatter.pubDate}</p>
+
+        <slot />
+
       </div>
-      <slot />
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  p {
-    margin-top: 0.5rem;
+  .date {
+    padding-bottom: 0.5rem;
+    border-bottom: 0.05rem solid var(--border);
   }
+
   .icon-name {
     display: flex;
   }
