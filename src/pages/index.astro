@@ -5,7 +5,6 @@ import Navigation from '../components/Navigation.astro';
 
 const allExperiences = await Astro.glob('../pages/experiences/*.{md,mdx}');
 const pageTitle = "Antoine Dujardin"
-// <Navigation />
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -16,9 +15,12 @@ const pageTitle = "Antoine Dujardin"
     </div>
   </section>
   <section>
-    
     <div class="index-title">
-      <h1>Featured experiences</h1>
+    <div class="nav">
+      <Navigation />
+      <h1 class="word">Featured experiences</h1>
+      <div class="spacer"></div>
+      </div>
     </div>
     <ul>
       {allExperiences.map((experience) => <ExperiencePost experience={experience} />)}
@@ -32,5 +34,21 @@ const pageTitle = "Antoine Dujardin"
     text-align:center;
     display: block;
     border-bottom: 0.05rem solid var(--border);
+  }
+
+  .word {
+    align-self: center;
+  }
+
+  .nav {
+    display:flex;
+    justify-content: space-between;
+    justify-content:;
+  }
+
+  .spacer {
+    display:inline-block;
+    margin: 0rem 3rem 0rem 1rem 
+
   }
 </style>

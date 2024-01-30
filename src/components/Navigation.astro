@@ -1,15 +1,40 @@
 ---
+import { Icon } from 'astro-icon/components'
 
 ---
   <nav>
-    <ul>
-      ---
-      <li>
-        <a href="/tags/work">work</a>
-      </li>
-      <li>
-        <a href="/tags/personal">personal</a>
-      </li>
-      ---
-    </ul>
+    <h1><Icon name="material-symbols:menu-rounded" class="hamburger"/></h1>
+    <section>
+      <ul class="nav-links hidden">
+        <li>
+          <a href="/tags/work">work</a>
+        </li>
+        <li>
+          <a href="/tags/personal">personal</a>
+        </li>
+      </ul>
+      <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+          document.querySelector('.nav-links').classList.toggle('hidden');
+        });
+      </script>
+    </section>
   </nav>
+
+  <style>
+    .hamburger {
+      cursor: pointer;
+    margin: 0rem 1rem 0rem 1rem 
+
+    }
+
+    .hidden {
+      display: none;
+    }
+    
+    a {
+      font-size: 1.25rem;
+    margin: 0rem 0rem 0rem 0rem 
+    }
+
+  </style>
