@@ -1,11 +1,11 @@
 @import url("./reset.css");
 
 :root {
-  --background: #313131;
-  --on-background: #ede4e4;
-  --nav-link: #e36d35;
-  --nav-link-hover: #aeb2da;
-  --border: #5f5f5f;
+  --background: #fcfafa;
+  --on-background: #4b3c3c;
+  --nav-link: #ab765d;
+  --nav-link-hover: #cfd2f6;
+  --border: #dcc4c4;
 }
 
 body {
@@ -58,7 +58,7 @@ li {
 
 .title {
   padding: 1rem 0rem;
-  text-align:left;
+  text-align: left;
   border-bottom: 0.05rem solid var(--border);
   display: flex;
   align-items: center;
@@ -94,7 +94,8 @@ li {
 
 .experience {
   margin-top: 1rem;
-  padding: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 0.05rem solid var(--border);
   display: flex;
 }
@@ -103,4 +104,3 @@ li {
   border-radius: 10rem;
   width: 2.5rem;
 }
-

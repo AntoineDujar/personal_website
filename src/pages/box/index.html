@@ -1,0 +1,125 @@
+<script id="vertex-shader" type="x-shader/x-vertex">
+  #version 300 es
+
+  in vec4 aPosition;
+  flat out vec4 vColor;
+  in vec3 aNormal;
+  out vec3 N, L, E;
+
+  uniform vec3 uSpin;
+
+  uniform mat4 uRotationMatrix;
+  uniform mat4 uTranslateMatrix;
+  uniform mat4 uIndividualMatrix;
+
+  uniform vec4 uLightPosition;
+  uniform mat3 uNormalMatrix;
+  uniform vec4 uAmbientProduct, uDiffuseProduct, uSpecularProduct;
+  uniform float uShininess;
+
+  uniform mat4 uModelViewMatrix;
+  uniform mat4 uProjectionMatrix;
+
+  void main()
+  {
+      vec3 angles = radians(uSpin);
+      vec3 c = cos(angles);
+      vec3 s = sin(angles);
+
+      mat4 rx = mat4(1.0,  0.0,  0.0, 0.0,
+    0.0,  c.x,  s.x, 0.0,
+    0.0, -s.x,  c.x, 0.0,
+    0.0,  0.0,  0.0, 1.0);
+
+      mat4 ry = mat4(c.y, 0.0, -s.y, 0.0,
+    0.0, 1.0,  0.0, 0.0,
+    s.y, 0.0,  c.y, 0.0,
+    0.0, 0.0,  0.0, 1.0);
+
+
+      mat4 rz = mat4(c.z, s.z, 0.0, 0.0,
+    -s.z,  c.z, 0.0, 0.0,
+    0.0,  0.0, 1.0, 0.0,
+    0.0,  0.0, 0.0, 1.0);
+
+
+      float sc = 0.8;
+
+      mat4 scale = mat4(
+          sc, 0.0, 0.0, 0.0,
+          0.0, sc, 0.0, 0.0,
+          0.0, 0.0, sc, 0.0,
+          0.0, 0.0, 0.0, 1.0);
+
+      mat4 shift = mat4(
+          1, 0.0, 0.0, 0.0,
+          0.0, 1, 0.0, 0.0,
+          0.0, 0.0, 5, 0.0,
+          0.0, 0.0, 1.0, 1.0);
+
+      vec3 pos = aPosition.xyz;
+      //fixed light postion
+      vec3 light = uLightPosition.xyz;
+      vec3 L = normalize(light - pos);
+
+      vec3 E = normalize(-pos);
+      vec3 H = normalize(L + E);
+
+      vec4 NN = vec4(aNormal,0);
+
+      // Transform vertex normal into eye coordinates
+
+      vec3 N = normalize(NN.xyz);
+
+      // Compute terms in the illumination equation
+      vec4 ambient = uAmbientProduct;
+
+      float Kd = max(dot(L, N), 0.0);
+      vec4  diffuse = Kd*uDiffuseProduct;
+
+      float Ks = pow( max(dot(N, H), 0.0), uShininess );
+      vec4  specular = Ks * uSpecularProduct;
+
+      if( dot(L, N) < 0.0 ) {
+          specular = vec4(0.0, 0.0, 0.0, 1.0);
+      }
+
+      vColor = ambient + diffuse +specular;
+
+      vColor.a = 1.0;
+
+      gl_Position = uProjectionMatrix*uModelViewMatrix*(shift*uRotationMatrix*(rz * ry * rx *aPosition)*uTranslateMatrix*uIndividualMatrix*scale);
+  }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+  #version 300 es
+
+  precision mediump float;
+  flat in vec4 vColor;
+  out vec4 fColor;
+
+
+  void main()
+  {
+
+      fColor = vColor;
+  }
+</script>
+
+<canvas id="gl-canvas" width="400" height="250"></canvas>
+
+<script src="/script/initShaders.js"></script>
+<script src="/script/MVnew.js"></script>
+<script src="/script/box_f1.js"></script>
+<script src="/script/box_f2.js"></script>
+<script src="/script/box_f3.js"></script>
+
+<div>
+  <button id="rotation">Toggle rotation</button>
+  <button id="rotationDirection">Change rotation direction</button>
+  <button id="lightLeft">Move light left</button>
+  <button id="lightRight">Move light right</button>
+  <button id="theta+">Move arms up</button>
+  <button id="theta-">Move arms down</button>
+</div>

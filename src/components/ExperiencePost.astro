@@ -1,53 +1,55 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 const { experience } = Astro.props;
-const exp = experience.frontmatter
+const exp = experience.frontmatter;
 
-const imagePath = '/src'+exp.image.url;
+const imagePath = "/src" + exp.image.url;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif}')
-if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif}"`);
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
+);
+if (!images[imagePath])
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "src/assets/**/*.{jpeg,jpg,png,gif}"`
+  );
 ---
-<li class="experience">
-    <div class="icon">
-        <a href={experience.url}>
-            <img src="/favicon.ico" alt="Favicon">
-        </a>
-    </div>
 
-    <div class="experience-contents">
-        <a href={experience.url} >
-            <h2>{exp.title}</h2>
-            <p>{exp.description}</p>
-        </a>
-        <ul class="tags">
-            {exp.tags.slice(0, 3).map((tag) => <li class="tag">
-                <a href={'/tags/'+tag}>
-                    #{tag}
-                </a>
-            </li>)}
-        </ul>
-        <a href={experience.url} >
-            <Image src={images[imagePath]()} alt={exp.image.alt} width="700"/>
-        </a>
-    </div>
+<li class="experience">
+  <div class="experience-contents">
+    <a href={experience.url}>
+      <h2>{exp.title}</h2>
+      <p>{exp.description}</p>
+    </a>
+    <ul class="tags">
+      {
+        exp.tags.slice(0, 3).map((tag) => (
+          <li class="tag">
+            <a href={"/tags/" + tag}>{tag}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <a href={experience.url}>
+      <Image src={images[imagePath]()} alt={exp.image.alt} width="700" />
+    </a>
+  </div>
 </li>
 
 <style>
-a {
-  color: var(--on-background);
-}
+  a {
+    color: var(--on-background);
+  }
 
-.tags a {
-  color: var(--nav-link);
-}
+  .tags a {
+    color: var(--nav-link);
+  }
 
-.icon {
-    margin: 0rem 0.5rem 0rem 1.5rem 
-}
+  .icon {
+    margin: 0rem 0.5rem 0rem 1.5rem;
+  }
 
-p {
+  p {
     margin-top: 0.15rem;
     margin-bottom: 0.15rem;
-}
+  }
 </style>
