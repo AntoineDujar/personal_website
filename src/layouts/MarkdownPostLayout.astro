@@ -1,22 +1,21 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
-import ImageImport from "../components/ImageImport.astro"
-import BackButton from "../components/BackButton.astro"
+import ImageImport from "../components/ImageImport.astro";
+import BackButton from "../components/BackButton.astro";
 const { frontmatter } = Astro.props;
 const tags = frontmatter.tags;
-
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
   <section>
-      <div class="title">
-        <BackButton />
-        <h2>Experience</h2>
+    <div class="title">
+      <BackButton />
+      <h2>{frontmatter.title}</h2>
     </div>
     <div class="article">
       <div class="experience-contents">
-        <div class="icon-name">
+        <!-- <div class="icon-name">
           <div class="icon">
             <img src="/favicon.ico" alt="Favicon" />
           </div>
@@ -33,10 +32,9 @@ const tags = frontmatter.tags;
           }
         </ul>
         <ImageImport url={frontmatter.image.url} alt={frontmatter.image.alt} />
-        <p class="date">{frontmatter.pubDate}</p>
+        <p class="date">{frontmatter.pubDate}</p> -->
 
         <slot />
-
       </div>
     </div>
   </section>
@@ -62,8 +60,8 @@ const tags = frontmatter.tags;
 
   .article {
     margin-top: 1rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    /* margin-left: 1.5rem;
+    margin-right: 1.5rem; */
   }
 
   .experience-contents {

@@ -31,7 +31,8 @@ section {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 4rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 h2 {
   font-size: 1.5rem;
@@ -54,6 +55,14 @@ ul {
 
 li {
   color: var(--on-background);
+}
+
+img {
+  max-width: 35rem;
+  max-height: 30rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .title {
